@@ -5,14 +5,18 @@
 from biogeme import * 
 from headers import *
 
-ASC_PRIVATE = Beta('ASC_PRIVATE',0,-1000,1000,0) 
+#PT: Public Transport
+#Private: Cars
+#Soft: Walking, cycling
+
+ASC_PRIVATE = Beta('ASC_PRIVATE',0,-1000,1000,0)
 ASC_PT = Beta('ASC_PT',0,-1000,1000,0)
 ASC_SOFT = Beta('ASC_SOFT',0,-1000,1000,0)
 B_TIME = Beta('B_TIME',0,-1000,1000,0)
 B_COST = Beta('B_COST',0,-1000,1000,0)
 
 # Definition of additional variables
-TimeBK = DefineVariable('TimeBK', (distance_km/16)*60)
+TimeBK = DefineVariable('TimeBK', (distance_km/16)*60) #Bicycle travel time (averaging on a 16km/h speed)
 CAR_AV = DefineVariable('CAR_AV', (CarAvail != 3)*(CarAvail != -1))
 BIKE_AV = DefineVariable('BIKE_AV', (NbBicy != -1)*(NbBicy != 0))
 
