@@ -4,7 +4,6 @@
 # v532_optima_base
 # Atasoy et al., 2013
 ########################################
-#Comment
 
 from biogeme import *
 from headers import *
