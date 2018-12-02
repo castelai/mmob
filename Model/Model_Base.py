@@ -18,9 +18,9 @@ from statistics import *
 ASC_CAR = Beta('ASC_CAR',0,-10000,10000,0)
 ASC_SM = Beta('ASC_SM',0,-10000,10000,0)
 BETA_COST = Beta('BETA_COST',0,-10000,10000,0)
-BETA_TIME = Beta('BETA_TIME_CAR',0,-10000,10000,0)
+BETA_TIME = Beta('BETA_TIME',0,-10000,10000,0)
 #BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
-#BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
+BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
 #BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 #BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
 #BETA_LANGUAGE = Beta('BETA_LANGUAGE',0,-10000,10000,0)
@@ -47,7 +47,7 @@ CAR = ASC_CAR * one + BETA_COST * CostCarCHF + BETA_TIME * TimeCar #+ BETA_NbCar
 
 PT = BETA_COST * MarginalCostPT + BETA_TIME * TimePT #+ BETA_Urban * URBAN + BETA_Student * STUDENT
 
-SM = ASC_SM * one #+ BETA_DIST * distance_km + BETA_Nbikes * NbBikes
+SM = ASC_SM * one + BETA_DIST * distance_km #+ BETA_Nbikes * NbBikes
 
 
 V = {1: CAR, 2: SM, 0: PT}
