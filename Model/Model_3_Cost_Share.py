@@ -3,25 +3,26 @@
 # Atasoy et al., 2013
 ########################################
 
+###### MODEL 3 COST SHARE ##############
+
+# Here we use as a basis the Model_2, instead of the Model_2_augmented. We are going to include an interaction between the socioeconomic variables and the attributes. 
+# In this program, we add an interaction with the revenue. The hypothesis is that the sensitivity to cost depends on the monthly revenue of the person. 
+# Therefore, instead of looking at the absolute cost of the car or the public transport, we will instead look at the fraction of cost it represents. 
+# An approximation to the actual income will be computed from the Income parameter that provides the income bracket to which the subject belongs.
+
 from biogeme import *
 from headers import *
 from loglikelihood import *
 from statistics import *
 
-#Parameters to be estimated
-# Arguments:
-#   1  Name for report. Typically, the same as the variable
-#   2  Starting value
-#   3  Lower bound
-#   4  Upper bound
-#   5  0: estimate the parameter, 1: keep it fixed
+
+
+# PARAMETERS
+
 ASC_CAR = Beta('ASC_CAR',0,-10000,10000,0)
 ASC_SM = Beta('ASC_SM',0,-10000,10000,0)
-BETA_COST_CAR = Beta('BETA_COST_CAR',0,-10000,10000,0)
-BETA_COST_PT = Beta('BETA_COST_PT',0,-10000,10000,0)
 BETA_TIME_CAR = Beta('BETA_TIME_CAR',0,-10000,10000,0)
 BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
-BETA_FREQUENCY = Beta('BETA_FREQUENCY', 0, -10000, 10000, 0)
 BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
 BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
@@ -31,12 +32,16 @@ BETA_Urban = Beta('BETA_Urban',0,-10000,10000,0)
 BETA_Student = Beta('BETA_Student',0,-10000,10000,0)
 BETA_Nbikes = Beta('BETA_Nbikes',0,-10000,10000,0)
 
+# New parameters
 
-# Define here arithmetic expressions for name that are not directly 
-# available from the data
+BETA_COST_SHARE_CAR = Beta('BETA_COST_SHARE_CAR',0,-10000,10000,0)
+BETA_COST_SHARE_PT = Beta('BETA_COST_SHARE_PT',0,-10000,10000,0)
+
+
+
+# VARIABLES
 
 one = DefineVariable('one',1)
-IncomeVar = DefineVariable("IncomeVar", (CalculatedIncome == -1) + ((CalculatedIncome > 0)*(7000/CalculatedIncome)))
 FrenchRegion = DefineVariable('FrenchRegion', LangCode == 1 )
 WORK = DefineVariable('WORK', ((TripPurpose == 1) + (TripPurpose == 2)) > 0 )
 URBAN = DefineVariable('URBAN', UrbRur == 2 )
@@ -44,22 +49,30 @@ STUDENT = DefineVariable('STUDENT', OccupStat == 8 )
 NbCars = DefineVariable('NbCars', NbCar * (NbCar > 0) )
 NbBikes = DefineVariable('NbBikes', NbBicy * (NbBicy > 0) )
 NbChildren = DefineVariable('NbChildren', NbChild * (NbChild > 0) )
-logTimeCar = DefineVariable('logTimeCar', log(TimeCar))
-logTimePT DefineVariable('logTimePT', log(TimePT))
 
-#Utilities
-CAR = ASC_CAR * one + BETA_COST_CAR * (IncomeVar ** LAMBDA_INCOME) * CostCarCHF + BETA_TIME_CAR * logTimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+# Added variables : Income = -1 are excluded from the data (see excluded objects) even if approx income is computed with the mean income
+# Cost shares are normalized to get a smaller beta value for car and PT
 
-PT = BETA_COST_PT * (IncomeVar ** LAMBDA_INCOME)* MarginalCostPT + BETA_TIME_PT * logTimePT + BETA_FREQUENCY * frequency + BETA_Urban * URBAN + BETA_Student * STUDENT
+ApproxIncome = DefineVariable('ApproxIncome', (Income == -1) * 7000 + (Income == 1) * 2500 + (Income == 2) * 3250 + (Income==3) * 5000 + (Income == 4) * 7000 + (Income == 5) * 9000 + (Income == 6) * 10000)
+CostCarShare_norm = DefineVariable('CostCarShare_norm', CostCarCHF * 1000/ApproxIncome)
+CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/ApproxIncome)
 
-SM = ASC_SM * one + BETA_DIST * distance_km + BETA_Nbikes * NbBikes
 
+# UTILITIES
+
+CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * TimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+
+PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
+
+SM = ASC_SM * one + BETA_DIST * distance_km  + BETA_Nbikes * NbBikes
 
 V = {1: CAR, 2: SM, 0: PT}
+
 av = {1: one, 2: one, 0: one}
 
-#Exclude
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1)
+# EXCLUDE
+
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (Income == -1) # I exclude the respondents whose income we do not know
 
 # MNL (Multinomial Logit model), with availability conditions
 logprob = bioLogLogit(V,av,Choice)
