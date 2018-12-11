@@ -53,9 +53,9 @@ one = DefineVariable('one',1)
 #NbChildren = DefineVariable('NbChildren', NbChild * (NbChild > 0) )
 
 #Utilities
-CAR = ASC_CAR * one + BETA_COST * CostCarCHF + BETA_TIME_CAR * TimeCar #+ BETA_NbCar * NbCars #+ BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+CAR = ASC_CAR * one + BETA_COST_CAR * CostCarCHF + BETA_TIME_CAR * TimeCar #+ BETA_NbCar * NbCars #+ BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
 
-PT = BETA_COST * MarginalCostPT + BETA_TIME_PT * TimePT #+ BETA_Urban * URBAN #+ BETA_Student * STUDENT
+PT = BETA_COST_PT * MarginalCostPT + BETA_TIME_PT * TimePT #+ BETA_Urban * URBAN #+ BETA_Student * STUDENT
 
 SM = ASC_SM * one + BETA_DIST * distance_km #+ BETA_Nbikes * NbBikes
 

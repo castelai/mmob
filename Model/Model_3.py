@@ -37,6 +37,9 @@ BETA_Nbikes = Beta('BETA_Nbikes',0,-10000,10000,0)
 
 one = DefineVariable('one',1)
 IncomeVar = DefineVariable("IncomeVar", (CalculatedIncome == -1) + ((CalculatedIncome > 0)*(7000/CalculatedIncome)))
+
+Income
+
 FrenchRegion = DefineVariable('FrenchRegion', LangCode == 1 )
 WORK = DefineVariable('WORK', ((TripPurpose == 1) + (TripPurpose == 2)) > 0 )
 URBAN = DefineVariable('URBAN', UrbRur == 2 )
@@ -46,9 +49,9 @@ NbBikes = DefineVariable('NbBikes', NbBicy * (NbBicy > 0) )
 NbChildren = DefineVariable('NbChildren', NbChild * (NbChild > 0) )
 
 #Utilities
-CAR = ASC_CAR * one + BETA_COST * (IncomeVar ** LAMBDA_INCOME) * CostCarCHF + BETA_TIME_CAR * TimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+CAR = ASC_CAR * one + BETA_COST_CAR * (IncomeVar ** LAMBDA_INCOME) * CostCarCHF + BETA_TIME_CAR * TimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
 
-PT = BETA_COST * (IncomeVar ** LAMBDA_INCOME) * MarginalCostPT + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
+PT = BETA_COST_PT * (IncomeVar ** LAMBDA_INCOME) * MarginalCostPT + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
 
 SM = ASC_SM * one + BETA_DIST * (((distance_km ** LAMBDA_DIST) - 1)/LAMBDA_DIST) + BETA_Nbikes * NbBikes
 
