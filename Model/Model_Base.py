@@ -49,7 +49,6 @@ PT = BETA_COST * MarginalCostPT + BETA_TIME * TimePT #+ BETA_Urban * URBAN + BET
 
 SM = ASC_SM * one + BETA_DIST * distance_km #+ BETA_Nbikes * NbBikes
 
-
 V = {1: CAR, 2: SM, 0: PT}
 av = {1: one, 2: one, 0: one}
 
