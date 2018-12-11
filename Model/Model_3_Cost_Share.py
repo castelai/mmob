@@ -3,16 +3,12 @@
 # Atasoy et al., 2013
 ########################################
 
-############ MODEL 3 ###################
+###### MODEL 3 COST SHARE ##############
 
 # Here we use as a basis the Model_2, instead of the Model_2_augmented. We are going to include an interaction between the socioeconomic variables and the attributes. 
-# In this program, we add an interaction with the age. The hypothesis is that the sensitivity to distance varies with age, the older and younger people willing to walk less.
-# Also, we add an interaction with the revenue. The hypothesis is that the sensitivity to cost depends on the monthly revenue of the person. 
+# In this program, we add an interaction with the revenue. The hypothesis is that the sensitivity to cost depends on the monthly revenue of the person. 
 # Therefore, instead of looking at the absolute cost of the car or the public transport, we will instead look at the fraction of cost it represents. 
 # An approximation to the actual income will be computed from the Income parameter that provides the income bracket to which the subject belongs.
-
-# We exclude from the dataset, all the observations with missing information on the income (Income = -1) or on the year of birth (BirthYear = -1).
-
 
 from biogeme import *
 from headers import *
@@ -27,6 +23,7 @@ ASC_CAR = Beta('ASC_CAR',0,-10000,10000,0)
 ASC_SM = Beta('ASC_SM',0,-10000,10000,0)
 BETA_TIME_CAR = Beta('BETA_TIME_CAR',0,-10000,10000,0)
 BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
+BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
 BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
 BETA_LANGUAGE = Beta('BETA_LANGUAGE',0,-10000,10000,0)
@@ -37,17 +34,8 @@ BETA_Nbikes = Beta('BETA_Nbikes',0,-10000,10000,0)
 
 # New parameters
 
-# In replacement to BETA_COST_CAR and BETA_COST_PT from the Model_2
-
 BETA_COST_SHARE_CAR = Beta('BETA_COST_SHARE_CAR',0,-10000,10000,0)
 BETA_COST_SHARE_PT = Beta('BETA_COST_SHARE_PT',0,-10000,10000,0)
-
-# Piecewise formulation of BETA_DIST in function of age category
-
-ASC_DIST = Beta('ASC_DIST',0,-10000,10000,0)
-BETA_DIST_YOUNG = Beta('BETA_DIST_YOUNG',0,-10000,10000,0) 
-BETA_DIST_ADULT = Beta('BETA_DIST_ADULT',0,-10000,10000,0) 
-BETA_DIST_OLD = Beta('BETA_DIST_OLD',0,-10000,10000,0)
 
 
 
@@ -62,19 +50,12 @@ NbCars = DefineVariable('NbCars', NbCar * (NbCar > 0) )
 NbBikes = DefineVariable('NbBikes', NbBicy * (NbBicy > 0) )
 NbChildren = DefineVariable('NbChildren', NbChild * (NbChild > 0) )
 
-# New variables 
-
-Age = DefineVariable('Age', 2010 - BirthYear)
-AgeYoung = DefineVariable('AgeYoung', (Age > 18) * 18 + Age * (Age <= 18))
-AgeAdult = DefineVariable('AgeAdult', (Age > 65) * (65 - 18) + (Age - 18) * (18 < Age <= 65))
-AgeOld = DefineVariable('AgeOld', (Age > 65) * (Age - 65))
-
+# Added variables : Income = -1 are excluded from the data (see excluded objects) even if approx income is computed with the mean income
 # Cost shares are normalized to get a smaller beta value for car and PT
 
 ApproxIncome = DefineVariable('ApproxIncome', (Income == -1) * 7000 + (Income == 1) * 2500 + (Income == 2) * 3250 + (Income==3) * 5000 + (Income == 4) * 7000 + (Income == 5) * 9000 + (Income == 6) * 10000)
 CostCarShare_norm = DefineVariable('CostCarShare_norm', CostCarCHF * 1000/ApproxIncome)
 CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/ApproxIncome)
-
 
 
 # UTILITIES
@@ -83,17 +64,15 @@ CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * 
 
 PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
 
-SM = ASC_SM * one + (ASC_DIST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
+SM = ASC_SM * one + BETA_DIST * distance_km  + BETA_Nbikes * NbBikes
 
 V = {1: CAR, 2: SM, 0: PT}
 
 av = {1: one, 2: one, 0: one}
 
-
-
 # EXCLUDE
 
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) + (Income == -1) # I exclude the respondents whose age we can not calculate or whose income we don't know
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (Income == -1) # I exclude the respondents whose income we do not know
 
 # MNL (Multinomial Logit model), with availability conditions
 logprob = bioLogLogit(V,av,Choice)

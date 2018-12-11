@@ -3,26 +3,33 @@
 # Atasoy et al., 2013
 ########################################
 
+######## MODEL 2 AUGMENTED #############
+
+# This model is an improvement to the Model 2, as it includes the influence of two new parameters on the utilities :
+# - Number of motos (for the private mode)
+# - Number of transfers (for the public transport)
+
+# Other parameters were tested, but didn't pass the tests, and the more parsimonious model was preferred :
+# - Frequency (for the public transport) --> Negligible impact on the log likelihood
+# - Number of trajects (for the private mode) --> Low t-value + negative beta parameter (nonsensical with the hypothesis that more trajects per day 
+# require a more flexible transport mode such as a motorbike or a car)
+
 from biogeme import *
 from headers import *
 from loglikelihood import *
 from statistics import *
 
-#Parameters to be estimated
-# Arguments:
-#   1  Name for report. Typically, the same as the variable
-#   2  Starting value
-#   3  Lower bound
-#   4  Upper bound
-#   5  0: estimate the parameter, 1: keep it fixed
+
+
+# PARAMETERS
+
 ASC_CAR = Beta('ASC_CAR',0,-10000,10000,0)
 ASC_SM = Beta('ASC_SM',0,-10000,10000,0)
-BETA_COST = Beta('BETA_COST',0,-10000,10000,0)
-LAMBDA_INCOME = Beta('LAMBDA_INCOME',1,-10000,10000,0)
+BETA_COST_CAR = Beta('BETA_COST_CAR',0,-10000,10000,0)
+BETA_COST_PT = Beta('BETA_COST_PT',0,-10000,10000,0)
 BETA_TIME_CAR = Beta('BETA_TIME_CAR',0,-10000,10000,0)
 BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
 BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
-LAMBDA_DIST = Beta('LAMBDA_DIST',1,-10000,10000,0)
 BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
 BETA_LANGUAGE = Beta('BETA_LANGUAGE',0,-10000,10000,0)
@@ -31,17 +38,16 @@ BETA_Urban = Beta('BETA_Urban',0,-10000,10000,0)
 BETA_Student = Beta('BETA_Student',0,-10000,10000,0)
 BETA_Nbikes = Beta('BETA_Nbikes',0,-10000,10000,0)
 
+# Added parameters from the initial Model 2
 
-# Define here arithmetic expressions for name that are not directly 
-# available from the data
+BETA_NbMoto = Beta('BETA_NbMoto',0,-10000,10000,0)
+BETA_NbTransf = Beta('BETA_NbTransf',0,-10000,10000,0)
+
+
+
+# VARIABLES
 
 one = DefineVariable('one',1)
-IncomeOne = DefineVariable('IncomeOne', (Income >= 1) + (Income == -1))
-IncomeTwo = DefineVariable('IncomeTwo', (Income >= 2)+(Income == -1))
-IncomeThree = DefineVariable('IncomeThree', (Income >= 3)+(Income == -1))
-IncomeFour = DefineVariable('IncomeFour', (Income >= 4)+(Income == -1))
-IncomeFive = DefineVariable('IncomeFive', (Income >= 5))
-IncomeSix = DefineVariable('IncomeSix', (Income >= 6))
 FrenchRegion = DefineVariable('FrenchRegion', LangCode == 1 )
 WORK = DefineVariable('WORK', ((TripPurpose == 1) + (TripPurpose == 2)) > 0 )
 URBAN = DefineVariable('URBAN', UrbRur == 2 )
@@ -50,18 +56,26 @@ NbCars = DefineVariable('NbCars', NbCar * (NbCar > 0) )
 NbBikes = DefineVariable('NbBikes', NbBicy * (NbBicy > 0) )
 NbChildren = DefineVariable('NbChildren', NbChild * (NbChild > 0) )
 
-#Utilities
-CAR = ASC_CAR * one + (BETA_COST_CAR_ONE*IncomeOne + BETA_COST_CAR_TWO*IncomeTwo +BETA_COST_CAR_THREE*IncomeThree + BETA_COST_CAR_FOUR*IncomeFour + BETA_COST_CAR_FIVE*IncomeFive + BETA_COST_CAR_SIX*IncomeSix)*CostCarCHF + BETA_TIME_CAR * TimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+# New variable
 
-PT = BETA_COST_PT  * MarginalCostPT + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
+NbMotos = DefineVariable('NbMotos', NbMoto * (NbMoto > 0) )
 
-SM = ASC_SM * one + BETA_DIST*distance_km+ BETA_Nbikes * NbBikes
 
+
+# UTILITIES
+
+CAR = ASC_CAR * one + BETA_COST_CAR * CostCarCHF + BETA_TIME_CAR * TimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK + BETA_NbMoto * NbMotos 
+
+PT = BETA_COST_PT * MarginalCostPT + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT + BETA_NbTransf * NbTransf
+
+SM = ASC_SM * one + BETA_DIST * distance_km + BETA_Nbikes * NbBikes
 
 V = {1: CAR, 2: SM, 0: PT}
+
 av = {1: one, 2: one, 0: one}
 
-#Exclude
+# EXCLUDE
+
 BIOGEME_OBJECT.EXCLUDE = (Choice == -1)
 
 # MNL (Multinomial Logit model), with availability conditions
