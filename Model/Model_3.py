@@ -39,9 +39,6 @@ BETA_Nbikes = Beta('BETA_Nbikes',0,-10000,10000,0)
 
 one = DefineVariable('one',1)
 IncomeVar = DefineVariable("IncomeVar", (CalculatedIncome == -1) + ((CalculatedIncome > 0)*(7000/CalculatedIncome)))
-
-Income
-
 FrenchRegion = DefineVariable('FrenchRegion', LangCode == 1 )
 WORK = DefineVariable('WORK', ((TripPurpose == 1) + (TripPurpose == 2)) > 0 )
 URBAN = DefineVariable('URBAN', UrbRur == 2 )
