@@ -17,9 +17,11 @@ from statistics import *
 #   5  0: estimate the parameter, 1: keep it fixed
 ASC_CAR = Beta('ASC_CAR',0,-10000,10000,0)
 ASC_SM = Beta('ASC_SM',0,-10000,10000,0)
-BETA_COST = Beta('BETA_COST',0,-10000,10000,0)
+BETA_COST_CAR = Beta('BETA_COST_CAR',0,-10000,10000,0)
+BETA_COST_PT = Beta('BETA_COST_PT',0,-10000,10000,0)
 BETA_TIME_CAR = Beta('BETA_TIME_CAR',0,-10000,10000,0)
 BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
+BETA_FREQUENCY = Beta('BETA_FREQUENCY', 0, -10000, 10000, 0)
 BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
 BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
@@ -48,7 +50,7 @@ logTimePT DefineVariable('logTimePT', log(TimePT))
 #Utilities
 CAR = ASC_CAR * one + BETA_COST_CAR * (IncomeVar ** LAMBDA_INCOME) * CostCarCHF + BETA_TIME_CAR * logTimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
 
-PT = BETA_COST_PT * (IncomeVar ** LAMBDA_INCOME)* MarginalCostPT + BETA_TIME_PT * logTimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
+PT = BETA_COST_PT * (IncomeVar ** LAMBDA_INCOME)* MarginalCostPT + BETA_TIME_PT * logTimePT + BETA_FREQUENCY * frequency + BETA_Urban * URBAN + BETA_Student * STUDENT
 
 SM = ASC_SM * one + BETA_DIST * distance_km + BETA_Nbikes * NbBikes
 
