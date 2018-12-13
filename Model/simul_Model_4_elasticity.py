@@ -58,8 +58,14 @@ AgeAdult = DefineVariable('AgeAdult', (Age > 65) * (65 - 18) + (Age - 18) * (18 
 AgeOld = DefineVariable('AgeOld', (Age > 65) * (Age - 65))
 
 ApproxIncome = DefineVariable('ApproxIncome', (Income == -1) * 7000 + (Income == 1) * 2500 + (Income == 2) * 3250 + (Income==3) * 5000 + (Income == 4) * 7000 + (Income == 5) * 9000 + (Income == 6) * 10000)
-CostCarShare_norm = DefineVariable('CostCarShare_norm', CostCarCHF * 1000/ApproxIncome)
-CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/ApproxIncome)
+#CostCarShare_norm = DefineVariable('CostCarShare_norm', CostCarCHF * 1000/ApproxIncome)
+#CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/ApproxIncome)
+
+# Need to know explicitly how CostCarShare_norm and CostPtShare_norm depend 
+# on CostCarCHF and MarginalCostPT respectively
+
+CostCarShare_norm = CostCarCHF * 1000/ApproxIncome
+CostPTShare_norm = MarginalCostPT * 1000/ApproxIncome
 
 # Variables for simulation
 
@@ -90,15 +96,30 @@ prob_SM = bioLogit(V,av,2)
 # Defines an itertor on the data
 rowIterator('obsIter')
 
+# Calculate the value of time for the alternatives, in CHF/hour
+VOT_CAR = 60*Derive(CAR, 'TimeCar')/Derive(CAR, 'CostCarCHF')
+VOT_PT  = 60*Derive(PT, 'TimePT')/Derive(PT, 'MarginalCostCHF')
+
+
+normalization_PT = 464.807
+normalization_CAR = 968.884
+# Calculate cost elasticity for different alternatives
+elas_CAR_cost = Derive(prob_CAR, 'CostCarCHF')*CostCarCHF/prob_CAR
+elas_PT_cost = Derive(prob_PT, 'MarginalCostPT')*MarginalCostPT/prob_PT
+
+
 #Define the weight
 sampleSize = 1524
 theWeight = Weight*sampleSize/0.617062
 BIOGEME_OBJECT.WEIGHT = theWeight
 
 # What has to be calculated?
-simulate = {'01 Prob CAR': prob_CAR,
-	    '02 Prob PT': prob_PT,
-	    '03 Prob SM': prob_SM}
+simulate = {'01 Disag. Elast. CAR - Cost': elas_CAR_cost,
+	    '02 Disag. Elast. PT - Cost': elas_PT_cost,
+	    '03 Agg. Elast. CAR - Cost': elas_CAR_cost*prob_CAR/normalization_CAR,
+	    '04 Agg. Elast. PT - Cost': elas_PT_cost*prob_PT/normalization_PT,
+	    '05 VoT CAR': VOT_CAR,
+	    '06 VoT PT': VOT_PT}
 
 BIOGEME_OBJECT.SIMULATE = Enumerate(simulate,'obsIter')
 
@@ -114,8 +135,7 @@ availabilityStatistics(av,'obsIter')
 BIOGEME_OBJECT.FORMULAS['Car utility'] = CAR
 BIOGEME_OBJECT.FORMULAS['PT utility'] = PT
 BIOGEME_OBJECT.FORMULAS['SM utility'] = SM
-BIOGEME_OBJECT.STATISTICS['Normalization for elasticities CAR'] = Sum(theWeight * prob_CAR ,'obsIter') 
-BIOGEME_OBJECT.STATISTICS['Normalization for elasticities PT'] = Sum(theWeight * prob_PT ,'obsIter')
+
 
 ## Code for the sensitivity analysis
 #names = ['ASC_CAR','ASC_DIST','ASC_SM','BETA_COST_SHARE_CAR','BETA_COST_SHARE_PT','BETA_DIST_ADULT','BETA_DIST_OLD','BETA_DIST_YOUNG','BETA_LANGUAGE','BETA_NbCar','BETA_NbChild','BETA_Nbikes','BETA_Student','BETA_TIME_CAR','BETA_TIME_PT','BETA_Urban','BETA_WorkTrip','LAMBDA_TIME_CAR','LAMBDA_TIME_PT']
