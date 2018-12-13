@@ -1,4 +1,4 @@
-# Null hypothesis: The specification in Model_2 is correct
+# Null hypothesis: The specification in Model_3 is correct
 
 from biogeme import *
 from headers import *
