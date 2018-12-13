@@ -17,7 +17,6 @@ from loglikelihood import *
 from statistics import *
 
 
-
 # PARAMETERS
 
 ASC_CAR = Beta('ASC_CAR',-0.392432,-10000,10000,1,'ASC_CAR' )
@@ -61,14 +60,14 @@ ApproxIncome = DefineVariable('ApproxIncome', (Income == -1) * 7000 + (Income ==
 CostCarShare_norm = DefineVariable('CostCarShare_norm', CostCarCHF * 1000/ApproxIncome)
 CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/ApproxIncome)
 
-# Variables for simulation
+# Variables for simulation, a 10% increase in fuel prices
 
-#CostCarShare_norm_increased = DefineVariable('CostCarShare_norm', (1.1*CostCarCHF)*1000/ApproxIncome)
-#CostPTShare_norm_increased = DefineVariable('CostPTShare_norm_increased', (1.1*MarginalCostPT)*1000/ApproxIncome)
+CostCarShare_norm_increased = DefineVariable('CostCarShare_norm_increased', (1.1*CostCarCHF)*1000/ApproxIncome)
+CostPTShare_norm_decrease = DefineVariable('CostPTShare_norm_decreased', (0.9*MarginalCostPT)*1000/ApproxIncome)
 
 # UTILITIES
 
-CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * ((TimeCar ** LAMBDA_TIME_CAR) - 1)/LAMBDA_TIME_CAR + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm_increased + BETA_TIME_CAR * ((TimeCar ** LAMBDA_TIME_CAR) - 1)/LAMBDA_TIME_CAR + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
 
 PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * ((TimePT ** LAMBDA_TIME_PT) - 1)/LAMBDA_TIME_PT + BETA_Urban * URBAN + BETA_Student * STUDENT
 

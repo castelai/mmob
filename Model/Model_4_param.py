@@ -1,7 +1,7 @@
 # This file has automatically been generated
 # biogeme 2.6a [Sun Aug 26 15:54:37 BST 2018]
 # <a href='http://people.epfl.ch/michel.bierlaire'>Michel Bierlaire</a>, <a href='http://transp-or.epfl.ch'>Transport and Mobility Laboratory</a>, <a href='http://www.epfl.ch'>Ecole Polytechnique F&eacute;d&eacute;rale de Lausanne (EPFL)</a>
-# Thu Dec 13 15:55:53 2018</p>
+# Thu Dec 13 16:19:36 2018</p>
 #
 ASC_CAR = Beta('ASC_CAR',-0.392432,-10000,10000,0,'ASC_CAR' )
 

@@ -63,14 +63,14 @@ CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/Appr
 
 # Variables for simulation
 
-#CostCarShare_norm_increased = DefineVariable('CostCarShare_norm', (1.1*CostCarCHF)*1000/ApproxIncome)
-#CostPTShare_norm_increased = DefineVariable('CostPTShare_norm_increased', (1.1*MarginalCostPT)*1000/ApproxIncome)
+CostCarShare_norm_increased = DefineVariable('CostCarShare_norm', (1.1*CostCarCHF)*1000/ApproxIncome)
+CostPTShare_norm_decrease = DefineVariable('CostPTShare_norm_decrease', (0.9*MarginalCostPT)*1000/ApproxIncome)
 
 # UTILITIES
 
 CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * ((TimeCar ** LAMBDA_TIME_CAR) - 1)/LAMBDA_TIME_CAR + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
 
-PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * ((TimePT ** LAMBDA_TIME_PT) - 1)/LAMBDA_TIME_PT + BETA_Urban * URBAN + BETA_Student * STUDENT
+PT = BETA_COST_SHARE_PT * CostPTShare_norm_decrease + BETA_TIME_PT * ((TimePT ** LAMBDA_TIME_PT) - 1)/LAMBDA_TIME_PT + BETA_Urban * URBAN + BETA_Student * STUDENT
 
 SM = ASC_SM * one + (ASC_DIST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
 
