@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<script src="http://transp-or.epfl.ch/biogeme/sorttable.js"></script>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<title>Model_3_Cost_Share~1.html - Report from biogeme 2.6a [Wed, Apr 19, 2017 7:57:38 AM]</title>
+<meta name="keywords" content="biogeme, discrete choice, random utility">
+<meta name="description" content="Report from biogeme 2.6a [Wed, Apr 19, 2017 7:57:38 AM]">
+<meta name="author" content="Michel Bierlaire">
+<style type=text/css>
+<!--table
+.biostyle
+	{font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	font-family:Courier;}
+.boundstyle
+	{font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	font-family:Courier;
+        color:red}
+-->
+</style>
+</head>
+
+<body bgcolor="#ffffff">
+<p>biogeme 2.6a [Wed, Apr 19, 2017 7:57:38 AM]</p>
+<p>Home page: <a href='http://biogeme.epfl.ch' target='_blank'>http://biogeme.epfl.ch</a></p>
+<p>Submit questions to <a href='https://groups.google.com/d/forum/biogeme' target='_blank'>https://groups.google.com/d/forum/biogeme</a></p>
+<p><a href='http://people.epfl.ch/michel.bierlaire'>Michel Bierlaire</a>, <a href='http://transp-or.epfl.ch'>Transport and Mobility Laboratory</a>, <a href='http://www.epfl.ch'>Ecole Polytechnique F&eacute;d&eacute;rale de Lausanne (EPFL)</a></p>
+<p>This file has automatically been generated on
+12/14/18 19:25:02</p>
+<p>If you drag this HTML file into the Calc application of <a href='http://www.openoffice.org/' target='_blank'>OpenOffice</a>, or the spreadsheet of <a href='https://www.libreoffice.org/' target='_blank'>LibreOffice</a>, you will be able to perform additional calculations.</p><table><tr class=biostyle><td align=right><strong>Report file</strong>:	</td><td>Model_3_Cost_Share~1.html</td></tr><tr class=biostyle><td align=right><strong>Sample file</strong>:	</td><td>__bin_optimaDataset_06(1).dat</td></tr></table><h1>Formulas</h1>
+<table border="0">
+<tr class=biostyle><td align=right><strong><em>Car utility:</em></strong>	</td><td><em>ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * TimeCar + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK</em></td></tr><tr class=biostyle><td align=right><strong><em>PT utility:</em></strong>	</td><td><em>BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT</em></td></tr><tr class=biostyle><td align=right><strong><em>SM utility:</em></strong>	</td><td><em>ASC_SM * one + BETA_DIST * distance_km + BETA_Nbikes * NbBikes</em></td></tr></table>
+<h1>Statistics</h1>
+<table border="0">
+<tr class=biostyle><td align=right><strong><em>Alt. 0 available:</em></strong>	</td><td><em>1550</em></td></tr><tr class=biostyle><td align=right><strong><em>Alt. 0 chosen:</em></strong>	</td><td><em>426</em></td></tr><tr class=biostyle><td align=right><strong><em>Alt. 1 available:</em></strong>	</td><td><em>1550</em></td></tr><tr class=biostyle><td align=right><strong><em>Alt. 1 chosen:</em></strong>	</td><td><em>1030</em></td></tr><tr class=biostyle><td align=right><strong><em>Alt. 2 available:</em></strong>	</td><td><em>1550</em></td></tr><tr class=biostyle><td align=right><strong><em>Alt. 2 chosen:</em></strong>	</td><td><em>94</em></td></tr><tr class=biostyle><td align=right><strong><em>Cte loglikelihood (only for full choice sets):</em></strong>	</td><td><em>-1234.62</em></td></tr><tr class=biostyle><td align=right><strong><em>Null loglikelihood:</em></strong>	</td><td><em>-1702.85</em></td></tr></table>
+<h1>Estimation report</h1>
+
+<table border="0">
+<tr class=biostyle><td align=right ><strong>Number of estimated parameters</strong>: </td> <td>14</td></tr>
+<tr class=biostyle><td align=right ><strong>Sample size</strong>:</td> <td>1550</td></tr>
+<tr class=biostyle><td align=right ><strong>Excluded observations</strong>:</td> <td>488</td></tr>
+<tr class=biostyle><td align=right><strong>Init log likelihood</strong>:	</td> <td>-1702.849</td></tr>
+<tr class=biostyle><td align=right><strong>Final log likelihood</strong>:	</td> <td>-873.306</td></tr>
+<tr class=biostyle><td align=right><strong>Likelihood ratio test for the init. model</strong>:	</td> <td>1659.085</td></tr>
+<tr class=biostyle><td align=right><strong>Rho-square for the init. model</strong>:	</td> <td>0.487</td></tr>
+<tr class=biostyle><td align=right><strong>Rho-square-bar for the init. model</strong>:	</td> <td>0.479</td></tr>
+<tr class=biostyle><td align=right><strong>Akaike Information Criterion</strong>:	</td> <td>1774.613</td></tr>
+<tr class=biostyle><td align=right><strong>Bayesian Information Criterion</strong>:	</td> <td>1849.457</td></tr>
+<tr class=biostyle><td align=right><strong>Final gradient norm</strong>:	</td> <td>+2.160e-005</td></tr>
+<tr class=biostyle><td align=right><strong>Diagnostic</strong>:	</td> <td>Trust region algorithm with simple bounds (CGT2000): Convergence reached...</td></tr>
+<tr class=biostyle><td align=right><strong>Iterations</strong>:	</td> <td>13</td></tr>
+<tr class=biostyle><td align=right><strong>Data processing time</strong>:	</td> <td>00:00</td></tr>
+<tr class=biostyle><td align=right><strong>Run time</strong>:	</td> <td>00:02</td></tr>
+<tr class=biostyle><td align=right><strong>Nbr of threads</strong>:	</td> <td>2</td></tr>
+</table>
+<h2>Estimated parameters</h2>
+<p><font size='-1'>Click on the headers of the columns to sort the table  [<a href='http://www.kryogenix.org/code/browser/sorttable/' target='_blank'>Credits</a>]</font></p>
+<table border="1" class="sortable">
+<tr class=biostyle><th>Name </th><th>Value</th><th>Std err</th><th>t-test</th><th>p-value</th><th></th><th>Robust Std err</th><th>Robust t-test</th><th>p-value</th><th></th></tr>
+<!-- x[0]=ASC_CAR (0,-0.736297) [-10000,10000] FREE ID=10119--><tr class=biostyle>
+<td>ASC_CAR</td><td>-0.736</td><td>0.205</td><td>-3.60</td><td>0.00</td><td></td><td>0.208</td><td>-3.54</td><td>0.00</td><td></td></tr>
+<!-- x[11]=ASC_SM (0,-0.653513) [-10000,10000] FREE ID=10139--><tr class=biostyle>
+<td>ASC_SM</td><td>-0.654</td><td>0.278</td><td>-2.35</td><td>0.02</td><td></td><td>0.380</td><td>-1.72</td><td>0.09</td><td>*</td></tr>
+<!-- x[1]=BETA_COST_SHARE_CAR (0,-0.536217) [-10000,10000] FREE ID=10120--><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>-0.536</td><td>0.136</td><td>-3.94</td><td>0.00</td><td></td><td>0.195</td><td>-2.74</td><td>0.01</td><td></td></tr>
+<!-- x[7]=BETA_COST_SHARE_PT (0,-0.320961) [-10000,10000] FREE ID=10132--><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>-0.321</td><td>0.0520</td><td>-6.17</td><td>0.00</td><td></td><td>0.0839</td><td>-3.82</td><td>0.00</td><td></td></tr>
+<!-- x[12]=BETA_DIST (0,-0.191977) [-10000,10000] FREE ID=10140--><tr class=biostyle>
+<td>BETA_DIST</td><td>-0.192</td><td>0.0199</td><td>-9.64</td><td>0.00</td><td></td><td>0.0496</td><td>-3.87</td><td>0.00</td><td></td></tr>
+<!-- x[5]=BETA_LANGUAGE (0,1.07135) [-10000,10000] FREE ID=10128--><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>1.07</td><td>0.181</td><td>5.91</td><td>0.00</td><td></td><td>0.175</td><td>6.14</td><td>0.00</td><td></td></tr>
+<!-- x[3]=BETA_NbCar (0,1.16109) [-10000,10000] FREE ID=10124--><tr class=biostyle>
+<td>BETA_NbCar</td><td>1.16</td><td>0.112</td><td>10.33</td><td>0.00</td><td></td><td>0.128</td><td>9.10</td><td>0.00</td><td></td></tr>
+<!-- x[4]=BETA_NbChild (0,0.193202) [-10000,10000] FREE ID=10126--><tr class=biostyle>
+<td>BETA_NbChild</td><td>0.193</td><td>0.0726</td><td>2.66</td><td>0.01</td><td></td><td>0.0702</td><td>2.75</td><td>0.01</td><td></td></tr>
+<!-- x[13]=BETA_Nbikes (0,0.339099) [-10000,10000] FREE ID=10141--><tr class=biostyle>
+<td>BETA_Nbikes</td><td>0.339</td><td>0.0634</td><td>5.35</td><td>0.00</td><td></td><td>0.0609</td><td>5.57</td><td>0.00</td><td></td></tr>
+<!-- x[10]=BETA_Student (0,3.10484) [-10000,10000] FREE ID=10137--><tr class=biostyle>
+<td>BETA_Student</td><td>3.10</td><td>0.389</td><td>7.99</td><td>0.00</td><td></td><td>0.378</td><td>8.20</td><td>0.00</td><td></td></tr>
+<!-- x[2]=BETA_TIME_CAR (0,-0.0220112) [-10000,10000] FREE ID=10123--><tr class=biostyle>
+<td>BETA_TIME_CAR</td><td>-0.0220</td><td>0.00408</td><td>-5.40</td><td>0.00</td><td></td><td>0.00614</td><td>-3.59</td><td>0.00</td><td></td></tr>
+<!-- x[8]=BETA_TIME_PT (0,-0.0110679) [-10000,10000] FREE ID=10134--><tr class=biostyle>
+<td>BETA_TIME_PT</td><td>-0.0111</td><td>0.00170</td><td>-6.53</td><td>0.00</td><td></td><td>0.00274</td><td>-4.03</td><td>0.00</td><td></td></tr>
+<!-- x[9]=BETA_Urban (0,0.20924) [-10000,10000] FREE ID=10135--><tr class=biostyle>
+<td>BETA_Urban</td><td>0.209</td><td>0.140</td><td>1.50</td><td>0.13</td><td>*</td><td>0.135</td><td>1.55</td><td>0.12</td><td>*</td></tr>
+<!-- x[6]=BETA_WorkTrip (0,-0.571036) [-10000,10000] FREE ID=10130--><tr class=biostyle>
+<td>BETA_WorkTrip</td><td>-0.571</td><td>0.132</td><td>-4.33</td><td>0.00</td><td></td><td>0.129</td><td>-4.42</td><td>0.00</td><td></td></tr>
+</table>
+<h2>Correlation of coefficients</h2>
+<p><font size='-1'>Click on the headers of the columns to sort the table [<a href='http://www.kryogenix.org/code/browser/sorttable/' target='_blank'>Credits</a>]</font></p>
+<table border="1" class="sortable">
+<tr class=biostyle><th>Coefficient1</th><th>Coefficient2</th><th>Covariance</th><th>Correlation</th><th>t-test</th><th>p-value</th><th></th><th>Rob. cov.</th><th>Rob. corr.</th><th>Rob. t-test</th><th>p-value</th><th></th></tr>
+<tr class=biostyle>
+<td>BETA_NbChild</td><td>BETA_Urban</td><td>0.000214</td><td>0.0210</td><td>-0.10</td><td>0.92</td><td>*</td><td>0.000274</td><td>0.0289</td><td>-0.11</td><td>0.92</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_WorkTrip</td><td>0.00142</td><td>0.0789</td><td>0.19</td><td>0.85</td><td>*</td><td>0.000744</td><td>0.0295</td><td>0.15</td><td>0.88</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>ASC_SM</td><td>0.0167</td><td>0.293</td><td>-0.28</td><td>0.78</td><td>*</td><td>0.00812</td><td>0.103</td><td>-0.20</td><td>0.84</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_WorkTrip</td><td>-0.00174</td><td>-0.0475</td><td>-0.26</td><td>0.79</td><td>*</td><td>-0.00377</td><td>-0.0766</td><td>-0.20</td><td>0.84</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_COST_SHARE_CAR</td><td>0.00245</td><td>0.0647</td><td>-0.39</td><td>0.70</td><td>*</td><td>0.00862</td><td>0.116</td><td>-0.29</td><td>0.77</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_NbCar</td><td>-0.000837</td><td>-0.0411</td><td>-0.41</td><td>0.68</td><td>*</td><td>-0.000963</td><td>-0.0433</td><td>-0.41</td><td>0.68</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_WorkTrip</td><td>-0.00632</td><td>-0.234</td><td>-0.62</td><td>0.54</td><td>*</td><td>-0.00534</td><td>-0.199</td><td>-0.62</td><td>0.53</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_COST_SHARE_CAR</td><td>-0.000527</td><td>-0.0189</td><td>-0.81</td><td>0.42</td><td>*</td><td>0.00327</td><td>0.0804</td><td>-0.73</td><td>0.46</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_COST_SHARE_PT</td><td>0.000922</td><td>0.0638</td><td>-1.19</td><td>0.23</td><td>*</td><td>0.00302</td><td>0.0945</td><td>-0.87</td><td>0.38</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_Nbikes</td><td>BETA_Urban</td><td>0.000241</td><td>0.0271</td><td>0.85</td><td>0.39</td><td>*</td><td>0.000258</td><td>0.0313</td><td>0.89</td><td>0.37</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_DIST</td><td>-0.00213</td><td>-0.385</td><td>-1.61</td><td>0.11</td><td>*</td><td>-0.0136</td><td>-0.719</td><td>-1.11</td><td>0.27</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_COST_SHARE_PT</td><td>0.00351</td><td>0.495</td><td>-1.80</td><td>0.07</td><td>*</td><td>0.00845</td><td>0.515</td><td>-1.28</td><td>0.20</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_DIST</td><td>7.03e-005</td><td>0.0678</td><td>-2.37</td><td>0.02</td><td></td><td>0.000799</td><td>0.192</td><td>-1.45</td><td>0.15</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_WorkTrip</td><td>-0.000347</td><td>-0.0505</td><td>1.73</td><td>0.08</td><td>*</td><td>-0.000996</td><td>-0.0919</td><td>1.56</td><td>0.12</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_TIME_PT</td><td>BETA_Urban</td><td>9.93e-006</td><td>0.0419</td><td>-1.58</td><td>0.12</td><td>*</td><td>1.48e-006</td><td>0.00400</td><td>-1.63</td><td>0.10</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_TIME_CAR</td><td>3.45e-005</td><td>0.0305</td><td>-2.27</td><td>0.02</td><td></td><td>-4.67e-005</td><td>-0.0200</td><td>-1.66</td><td>0.10</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_TIME_PT</td><td>8.19e-005</td><td>0.174</td><td>-2.32</td><td>0.02</td><td></td><td>4.04e-005</td><td>0.0387</td><td>-1.69</td><td>0.09</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_TIME_CAR</td><td>BETA_Urban</td><td>2.07e-005</td><td>0.0363</td><td>-1.65</td><td>0.10</td><td>*</td><td>-1.44e-005</td><td>-0.0174</td><td>-1.71</td><td>0.09</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_DIST</td><td>5.38e-005</td><td>0.0198</td><td>-2.51</td><td>0.01</td><td></td><td>0.00121</td><td>0.125</td><td>-1.76</td><td>0.08</td><td>*</td></tr><tr class=biostyle>
+<td>BETA_NbChild</td><td>BETA_Nbikes</td><td>0.00124</td><td>0.269</td><td>-1.77</td><td>0.08</td><td>*</td><td>0.00114</td><td>0.268</td><td>-1.83</td><td>0.07</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_COST_SHARE_PT</td><td>0.000471</td><td>0.0442</td><td>-1.99</td><td>0.05</td><td></td><td>0.00245</td><td>0.140</td><td>-1.95</td><td>0.05</td><td>*</td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_NbChild</td><td>-0.00256</td><td>-0.127</td><td>-2.86</td><td>0.00</td><td></td><td>-0.00234</td><td>-0.0877</td><td>-2.16</td><td>0.03</td><td></td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_Urban</td><td>0.00970</td><td>0.250</td><td>-3.10</td><td>0.00</td><td></td><td>0.00764</td><td>0.149</td><td>-2.25</td><td>0.02</td><td></td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_Nbikes</td><td>-0.0115</td><td>-0.650</td><td>-3.08</td><td>0.00</td><td></td><td>-0.0106</td><td>-0.457</td><td>-2.41</td><td>0.02</td><td></td></tr><tr class=biostyle>
+<td>BETA_TIME_CAR</td><td>BETA_TIME_PT</td><td>4.14e-006</td><td>0.598</td><td>-3.26</td><td>0.00</td><td></td><td>1.25e-005</td><td>0.740</td><td>-2.43</td><td>0.02</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_TIME_CAR</td><td>-0.000322</td><td>-0.580</td><td>-3.71</td><td>0.00</td><td></td><td>-0.000124</td><td>-0.103</td><td>-2.62</td><td>0.01</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_DIST</td><td>0.000242</td><td>0.0595</td><td>-2.66</td><td>0.01</td><td></td><td>0.00171</td><td>0.166</td><td>-2.65</td><td>0.01</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_TIME_PT</td><td>8.10e-006</td><td>0.0351</td><td>-3.86</td><td>0.00</td><td></td><td>0.000242</td><td>0.450</td><td>-2.70</td><td>0.01</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_WorkTrip</td><td>0.000113</td><td>0.0428</td><td>2.86</td><td>0.00</td><td></td><td>0.000245</td><td>0.0382</td><td>2.77</td><td>0.01</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_Urban</td><td>5.47e-005</td><td>0.0196</td><td>-2.85</td><td>0.00</td><td></td><td>5.75e-005</td><td>0.00860</td><td>-2.80</td><td>0.01</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbChild</td><td>BETA_TIME_PT</td><td>2.54e-006</td><td>0.0206</td><td>2.82</td><td>0.00</td><td></td><td>2.41e-006</td><td>0.0125</td><td>2.91</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbChild</td><td>BETA_TIME_CAR</td><td>-8.59e-006</td><td>-0.0290</td><td>2.96</td><td>0.00</td><td></td><td>-2.59e-005</td><td>-0.0601</td><td>3.04</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_Urban</td><td>-0.000510</td><td>-0.0268</td><td>-3.77</td><td>0.00</td><td></td><td>0.000794</td><td>0.0301</td><td>-3.18</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_Urban</td><td>-0.000174</td><td>-0.0239</td><td>-3.53</td><td>0.00</td><td></td><td>-0.000492</td><td>-0.0435</td><td>-3.27</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_TIME_CAR</td><td>9.15e-005</td><td>0.110</td><td>-3.50</td><td>0.00</td><td></td><td>0.000225</td><td>0.176</td><td>-3.45</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_TIME_PT</td><td>0.000103</td><td>0.297</td><td>-3.55</td><td>0.00</td><td></td><td>0.000171</td><td>0.301</td><td>-3.50</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_TIME_CAR</td><td>1.48e-005</td><td>0.182</td><td>-8.68</td><td>0.00</td><td></td><td>9.67e-005</td><td>0.318</td><td>-3.54</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_NbChild</td><td>0.000363</td><td>0.0367</td><td>-4.80</td><td>0.00</td><td></td><td>0.000970</td><td>0.0707</td><td>-3.59</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_TIME_CAR</td><td>-9.19e-006</td><td>-0.0433</td><td>-5.71</td><td>0.00</td><td></td><td>0.000206</td><td>0.399</td><td>-3.66</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_TIME_PT</td><td>7.13e-006</td><td>0.211</td><td>-9.22</td><td>0.00</td><td></td><td>5.07e-005</td><td>0.373</td><td>-3.72</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_TIME_PT</td><td>-6.41e-006</td><td>-0.0727</td><td>-5.94</td><td>0.00</td><td></td><td>9.08e-005</td><td>0.394</td><td>-3.74</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_Nbikes</td><td>-2.80e-005</td><td>-0.00244</td><td>3.81</td><td>0.00</td><td></td><td>-8.78e-005</td><td>-0.00825</td><td>3.95</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Urban</td><td>BETA_WorkTrip</td><td>-0.000582</td><td>-0.0315</td><td>4.00</td><td>0.00</td><td></td><td>-0.00110</td><td>-0.0632</td><td>4.05</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_NbChild</td><td>-0.00213</td><td>-0.143</td><td>-4.10</td><td>0.00</td><td></td><td>-0.00128</td><td>-0.0875</td><td>-4.13</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_LANGUAGE</td><td>0.00318</td><td>0.0632</td><td>-5.36</td><td>0.00</td><td></td><td>0.00121</td><td>0.0182</td><td>-4.15</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_TIME_CAR</td><td>BETA_WorkTrip</td><td>-3.25e-005</td><td>-0.0604</td><td>4.15</td><td>0.00</td><td></td><td>-7.32e-005</td><td>-0.0922</td><td>4.22</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_Nbikes</td><td>-6.43e-005</td><td>-0.00744</td><td>-5.81</td><td>0.00</td><td></td><td>-0.000305</td><td>-0.0256</td><td>-4.24</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_TIME_PT</td><td>BETA_WorkTrip</td><td>9.59e-006</td><td>0.0429</td><td>4.24</td><td>0.00</td><td></td><td>-1.09e-005</td><td>-0.0306</td><td>4.33</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_Urban</td><td>0.00426</td><td>0.168</td><td>4.11</td><td>0.00</td><td></td><td>0.00532</td><td>0.226</td><td>4.42</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_NbChild</td><td>-1.57e-005</td><td>-0.0108</td><td>-5.10</td><td>0.00</td><td></td><td>1.45e-005</td><td>0.00416</td><td>-4.49</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_Urban</td><td>0.0105</td><td>0.367</td><td>-4.70</td><td>0.00</td><td></td><td>0.00914</td><td>0.326</td><td>-4.55</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_NbChild</td><td>-0.00123</td><td>-0.0931</td><td>4.36</td><td>0.00</td><td></td><td>-0.000865</td><td>-0.0705</td><td>4.56</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_NbCar</td><td>-0.000888</td><td>-0.0284</td><td>-6.00</td><td>0.00</td><td></td><td>0.00278</td><td>0.0572</td><td>-4.60</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_NbChild</td><td>-0.000101</td><td>-0.0267</td><td>-5.69</td><td>0.00</td><td></td><td>-0.000164</td><td>-0.0278</td><td>-4.64</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_Nbikes</td><td>-0.000977</td><td>-0.0753</td><td>-4.91</td><td>0.00</td><td></td><td>-0.000645</td><td>-0.0509</td><td>-4.90</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_Student</td><td>0.000651</td><td>0.00923</td><td>-4.76</td><td>0.00</td><td></td><td>0.000922</td><td>0.0139</td><td>-4.90</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_Urban</td><td>-0.000485</td><td>-0.0308</td><td>5.23</td><td>0.00</td><td></td><td>-0.000480</td><td>-0.0279</td><td>5.06</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbChild</td><td>BETA_WorkTrip</td><td>-0.000401</td><td>-0.0418</td><td>4.99</td><td>0.00</td><td></td><td>-9.97e-005</td><td>-0.0110</td><td>5.17</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_Student</td><td>0.00929</td><td>0.213</td><td>-5.10</td><td>0.00</td><td></td><td>0.0118</td><td>0.244</td><td>-5.27</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Nbikes</td><td>BETA_TIME_PT</td><td>2.46e-006</td><td>0.0229</td><td>5.52</td><td>0.00</td><td></td><td>-4.52e-006</td><td>-0.0271</td><td>5.74</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Nbikes</td><td>BETA_TIME_CAR</td><td>-7.75e-007</td><td>-0.00299</td><td>5.68</td><td>0.00</td><td></td><td>-1.47e-005</td><td>-0.0394</td><td>5.88</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_Nbikes</td><td>0.000562</td><td>0.0788</td><td>6.59</td><td>0.00</td><td></td><td>0.000282</td><td>0.0363</td><td>5.90</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_LANGUAGE</td><td>-0.000180</td><td>-0.00729</td><td>-7.06</td><td>0.00</td><td></td><td>-0.00196</td><td>-0.0573</td><td>-5.97</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_NbCar</td><td>-0.0154</td><td>-0.670</td><td>-6.49</td><td>0.00</td><td></td><td>-0.0177</td><td>-0.667</td><td>-6.16</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_Nbikes</td><td>-0.000131</td><td>-0.0396</td><td>-7.89</td><td>0.00</td><td></td><td>-0.000360</td><td>-0.0705</td><td>-6.16</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_TIME_PT</td><td>-1.03e-006</td><td>-0.00335</td><td>5.97</td><td>0.00</td><td></td><td>-2.41e-005</td><td>-0.0502</td><td>6.19</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_TIME_CAR</td><td>4.42e-006</td><td>0.00597</td><td>6.03</td><td>0.00</td><td></td><td>-1.29e-005</td><td>-0.0121</td><td>6.26</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Nbikes</td><td>BETA_WorkTrip</td><td>4.96e-005</td><td>0.00592</td><td>6.23</td><td>0.00</td><td></td><td>-0.000153</td><td>-0.0194</td><td>6.32</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_NbChild</td><td>0.000123</td><td>0.0150</td><td>7.28</td><td>0.00</td><td></td><td>-0.000448</td><td>-0.0501</td><td>6.51</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_LANGUAGE</td><td>-0.00116</td><td>-0.0314</td><td>-6.51</td><td>0.00</td><td></td><td>-0.00120</td><td>-0.0332</td><td>-6.55</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_Nbikes</td><td>-8.83e-005</td><td>-0.0699</td><td>-7.83</td><td>0.00</td><td></td><td>-9.61e-005</td><td>-0.0318</td><td>-6.66</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_LANGUAGE</td><td>-4.43e-005</td><td>-0.0123</td><td>-6.91</td><td>0.00</td><td></td><td>-6.33e-005</td><td>-0.00732</td><td>-6.95</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Student</td><td>BETA_Urban</td><td>0.000882</td><td>0.0162</td><td>7.05</td><td>0.00</td><td></td><td>-0.00266</td><td>-0.0521</td><td>7.09</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_LANGUAGE</td><td>4.22e-005</td><td>0.00447</td><td>-7.39</td><td>0.00</td><td></td><td>-0.000445</td><td>-0.0304</td><td>-7.10</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_SM</td><td>BETA_Student</td><td>0.000733</td><td>0.00679</td><td>-7.89</td><td>0.00</td><td></td><td>0.00698</td><td>0.0485</td><td>-7.18</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Nbikes</td><td>BETA_Student</td><td>0.000925</td><td>0.0375</td><td>-7.06</td><td>0.00</td><td></td><td>0.00134</td><td>0.0581</td><td>-7.28</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_LANGUAGE</td><td>BETA_WorkTrip</td><td>2.79e-005</td><td>0.00117</td><td>7.33</td><td>0.00</td><td></td><td>-0.000650</td><td>-0.0288</td><td>7.46</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbChild</td><td>BETA_Student</td><td>0.00102</td><td>0.0361</td><td>-7.41</td><td>0.00</td><td></td><td>0.00210</td><td>0.0791</td><td>-7.67</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_NbCar</td><td>0.00184</td><td>0.120</td><td>-10.24</td><td>0.00</td><td></td><td>0.00467</td><td>0.187</td><td>-7.99</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Student</td><td>BETA_TIME_PT</td><td>-5.65e-005</td><td>-0.0857</td><td>8.01</td><td>0.00</td><td></td><td>-4.91e-005</td><td>-0.0473</td><td>8.23</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Student</td><td>BETA_TIME_CAR</td><td>-0.000110</td><td>-0.0692</td><td>8.04</td><td>0.00</td><td></td><td>-0.000110</td><td>-0.0474</td><td>8.25</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>ASC_CAR</td><td>BETA_Student</td><td>-0.00930</td><td>-0.117</td><td>-8.35</td><td>0.00</td><td></td><td>-0.0146</td><td>-0.186</td><td>-8.27</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_CAR</td><td>BETA_Student</td><td>0.000616</td><td>0.0116</td><td>-8.87</td><td>0.00</td><td></td><td>-0.00131</td><td>-0.0177</td><td>-8.49</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_Student</td><td>-0.000164</td><td>-0.0212</td><td>-8.46</td><td>0.00</td><td></td><td>-0.00181</td><td>-0.0964</td><td>-8.53</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_Student</td><td>-0.000225</td><td>-0.0111</td><td>-8.72</td><td>0.00</td><td></td><td>-0.00164</td><td>-0.0515</td><td>-8.74</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_WorkTrip</td><td>-0.00147</td><td>-0.0992</td><td>9.53</td><td>0.00</td><td></td><td>-0.00300</td><td>-0.182</td><td>8.78</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_TIME_PT</td><td>-5.05e-006</td><td>-0.0265</td><td>10.42</td><td>0.00</td><td></td><td>2.19e-005</td><td>0.0627</td><td>9.20</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_Student</td><td>BETA_WorkTrip</td><td>0.000610</td><td>0.0119</td><td>8.99</td><td>0.00</td><td></td><td>0.000368</td><td>0.00752</td><td>9.21</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_NbCar</td><td>BETA_TIME_CAR</td><td>-5.40e-005</td><td>-0.118</td><td>10.47</td><td>0.00</td><td></td><td>-2.61e-005</td><td>-0.0333</td><td>9.25</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_DIST</td><td>BETA_NbCar</td><td>-8.74e-005</td><td>-0.0390</td><td>-11.77</td><td>0.00</td><td></td><td>-0.000321</td><td>-0.0508</td><td>-9.72</td><td>0.00</td><td></td></tr><tr class=biostyle>
+<td>BETA_COST_SHARE_PT</td><td>BETA_NbCar</td><td>7.50e-005</td><td>0.0128</td><td>-12.02</td><td>0.00</td><td></td><td>0.00100</td><td>0.0934</td><td>-10.15</td><td>0.00</td><td></td></tr></table>
+<p>Smallest singular value: 6.54561</p>
