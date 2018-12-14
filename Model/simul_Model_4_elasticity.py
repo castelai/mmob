@@ -85,7 +85,7 @@ V = {1: CAR, 2: SM, 0: PT}
 av = {1: one, 2: one, 0: one}
 
 # EXCLUDE
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) + (Income == -1) # I exclude the respondents whose age we can not calculate or whose income we don't know
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) + (Income == -1) + (GenAbST == 1) # I exclude the respondents whose age we can not calculate or whose income we don't know
 
 # Logit, with availability conditions
 prob_CAR = bioLogit(V,av,1)
