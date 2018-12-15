@@ -3,13 +3,16 @@
 # Atasoy et al., 2013
 ########################################
 
-############ MODEL 4 ###################
+############ MODEL 3 ###################
 
-# The model 4 includes two extra non-linear specifications (we already have the piecewise formulation for B_DIST from Model_3) under the form of a box cox
-# on the time spent in public transport or in the car (private transport). The hypothesis is that as the time duration increases,
-# the marginal impact of time on the utility probably decreases. For example, 5 extra minutes on a 2-hour long trip will be less annoying than on a 10-min trip.
-# A lambda value lower than 1 implies that the marginal cost of time decreases with the duration, whereas a lambda value greater than 1 means that it increases with the duration
-# (which would be nonsensical and wouldn't pass the informal test).
+# Here we use as a basis the Model_2, instead of the Model_2_augmented. We are going to include an interaction between the socioeconomic variables and the attributes. 
+# In this program, we add an interaction with the age. The hypothesis is that the sensitivity to distance varies with age, the older and younger people willing to walk less.
+# Also, we add an interaction with the revenue. The hypothesis is that the sensitivity to cost depends on the monthly revenue of the person. 
+# Therefore, instead of looking at the absolute cost of the car or the public transport, we will instead look at the fraction of cost it represents. 
+# An approximation to the actual income will be computed from the Income parameter that provides the income bracket to which the subject belongs.
+
+# We exclude from the dataset, all the observations with missing information on the income (Income = -1) or on the year of birth (BirthYear = -1).
+
 
 from biogeme import *
 from headers import *
@@ -22,8 +25,10 @@ from statistics import *
 
 ASC_CAR = Beta('ASC_CAR',0,-10000,10000,0)
 ASC_SM = Beta('ASC_SM',0,-10000,10000,0)
-BETA_TIME_CAR = Beta('BETA_TIME_CAR',0,-10000,10000,0)
-BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
+BETA_TIME_CAR_1 = Beta('BETA_TIME_CAR_1',0,-10000,10000,0)
+BETA_TIME_CAR_2 = Beta('BETA_TIME_CAR_2',0,-10000,10000,0)
+BETA_TIME_PT_1 = Beta('BETA_TIME_PT_1',0,-10000,10000,0)
+BETA_TIME_PT_2 = Beta('BETA_TIME_PT_2',0,-10000,10000,0)
 BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
 BETA_LANGUAGE = Beta('BETA_LANGUAGE',0,-10000,10000,0)
@@ -33,7 +38,7 @@ BETA_Student = Beta('BETA_Student',0,-10000,10000,0)
 BETA_Nbikes = Beta('BETA_Nbikes',0,-10000,10000,0)
 BETA_COST_SHARE_CAR = Beta('BETA_COST_SHARE_CAR',0,-10000,10000,0)
 BETA_COST_SHARE_PT = Beta('BETA_COST_SHARE_PT',0,-10000,10000,0)
-BETA_DIST_CST = Beta('BETA_DIST_CST',0,-10000,10000,0)
+ASC_DIST = Beta('ASC_DIST',0,-10000,10000,0)
 BETA_DIST_YOUNG = Beta('BETA_DIST_YOUNG',0,-10000,10000,0) 
 BETA_DIST_ADULT = Beta('BETA_DIST_ADULT',0,-10000,10000,0) 
 BETA_DIST_OLD = Beta('BETA_DIST_OLD',0,-10000,10000,0)
@@ -42,8 +47,6 @@ BETA_DIST_OLD = Beta('BETA_DIST_OLD',0,-10000,10000,0)
 
 LAMBDA_TIME_CAR = Beta('LAMBDA_TIME_CAR',1,-1000,1000,0)
 LAMBDA_TIME_PT = Beta('LAMBDA_TIME_PT',1,-1000,1000,0)
-LAMBDA_DIST = Beta('LAMBDA_DIST',1,-1000,1000,0)
-
 
 # VARIABLES
 
@@ -69,11 +72,11 @@ CostPTShare_norm = DefineVariable('CostPTShare_norm', MarginalCostPT * 1000/Appr
 
 # UTILITIES
 
-CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * ((TimeCar ** LAMBDA_TIME_CAR) - 1)/LAMBDA_TIME_CAR + BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
+CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR_1 * TimeCar + BETA_TIME_CAR_2 * ((TimeCar ** LAMBDA_TIME_CAR) - 1)/LAMBDA_TIME_CAR+ BETA_NbCar * NbCars + BETA_NbChild * NbChildren + BETA_LANGUAGE * FrenchRegion + BETA_WorkTrip * WORK
 
-PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * ((TimePT ** LAMBDA_TIME_PT) - 1)/LAMBDA_TIME_PT + BETA_Urban * URBAN + BETA_Student * STUDENT
+PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT_1 * TimePT + BETA_TIME_PT_2 * ((TimePT ** LAMBDA_TIME_PT) - 1)/LAMBDA_TIME_PT + BETA_Urban * URBAN + BETA_Student * STUDENT
 
-SM = ASC_SM * one + (BETA_DIST_CST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * ((distance_km**LAMBDA_DIST)-1)/LAMBDA_DIST  + BETA_Nbikes * NbBikes
+SM = ASC_SM * one + (ASC_DIST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
 
 V = {1: CAR, 2: SM, 0: PT}
 
@@ -105,4 +108,3 @@ availabilityStatistics(av,'obsIter')
 BIOGEME_OBJECT.FORMULAS['Car utility'] = CAR
 BIOGEME_OBJECT.FORMULAS['PT utility'] = PT
 BIOGEME_OBJECT.FORMULAS['SM utility'] = SM
-BIOGEME_OBJECT.STATISTICS['Sum of weights'] = Sum(Weight, 'obsIter')
