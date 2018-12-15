@@ -44,7 +44,7 @@ BETA_COST_SHARE_PT = Beta('BETA_COST_SHARE_PT',0,-10000,10000,0)
 
 # Piecewise formulation of BETA_DIST in function of age category
 
-ASC_DIST = Beta('ASC_DIST',0,-10000,10000,0)
+BETA_DIST_CST = Beta('BETA_DIST_CST',0,-10000,10000,0)
 BETA_DIST_YOUNG = Beta('BETA_DIST_YOUNG',0,-10000,10000,0) 
 BETA_DIST_ADULT = Beta('BETA_DIST_ADULT',0,-10000,10000,0) 
 BETA_DIST_OLD = Beta('BETA_DIST_OLD',0,-10000,10000,0)
@@ -83,7 +83,7 @@ CAR = ASC_CAR * one + BETA_COST_SHARE_CAR * CostCarShare_norm + BETA_TIME_CAR * 
 
 PT = BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT
 
-SM = ASC_SM * one + (ASC_DIST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
+SM = ASC_SM * one + (BETA_DIST_CST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
 
 V = {1: CAR, 2: SM, 0: PT}
 
