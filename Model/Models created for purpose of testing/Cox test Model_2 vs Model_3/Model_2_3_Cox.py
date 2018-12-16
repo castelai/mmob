@@ -16,7 +16,6 @@ BETA_COST_PT = Beta('BETA_COST_PT',0,-10000,10000,0)
 BETA_TIME_CAR = Beta('BETA_TIME_CAR',0,-10000,10000,0)
 BETA_TIME_PT = Beta('BETA_TIME_PT',0,-10000,10000,0)
 BETA_FREQUENCY = Beta('BETA_FREQUENCY', 0, -10000, 10000, 0)
-BETA_DIST = Beta('BETA_DIST',0,-10000,10000,0)
 BETA_NbCar = Beta('BETA_NbCar',0,-10000,10000,0)
 BETA_NbChild = Beta('BETA_NbChild',0,-10000,10000,0)
 BETA_LANGUAGE = Beta('BETA_LANGUAGE',0,-10000,10000,0)
@@ -72,7 +71,7 @@ CAR = ASC_CAR * one + BETA_COST_CAR * CostCarCHF + BETA_COST_SHARE_CAR * CostCar
 
 PT = BETA_COST_PT * MarginalCostPT + BETA_COST_SHARE_PT * CostPTShare_norm + BETA_TIME_PT * TimePT + BETA_Urban * URBAN + BETA_Student * STUDENT 
 
-SM = ASC_SM * one + BETA_DIST * distance_km + (ASC_DIST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
+SM = ASC_SM * one  + (ASC_DIST + BETA_DIST_YOUNG * AgeYoung + BETA_DIST_ADULT * AgeAdult + BETA_DIST_OLD * AgeOld) * distance_km  + BETA_Nbikes * NbBikes
 
 V = {1: CAR, 2: SM, 0: PT}
 
@@ -80,7 +79,7 @@ av = {1: one, 2: one, 0: one}
 
 # EXCLUDE
 
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1)
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) + (Income == -1) # I exclude the respondents whose age we can not calculate or whose income we don't know
 
 # MNL (Multinomial Logit model), with availability conditions
 logprob = bioLogLogit(V,av,Choice)
