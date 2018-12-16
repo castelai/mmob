@@ -83,7 +83,7 @@ av = {1: one, 2: one, 0: one}
 
 # EXCLUDE
 
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) + (Income == -1) # I exclude the respondents whose age we can not calculate or whose income we don't know
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (Income == -1) # I exclude the respondents whose age we can not calculate or whose income we don't know
 
 # MNL (Multinomial Logit model), with availability conditions
 logprob = bioLogLogit(V,av,Choice)
