@@ -115,3 +115,4 @@ availabilityStatistics(av,'obsIter')
 BIOGEME_OBJECT.FORMULAS['Car utility'] = CAR
 BIOGEME_OBJECT.FORMULAS['PT utility'] = PT
 BIOGEME_OBJECT.FORMULAS['SM utility'] = SM
+BIOGEME_OBJECT.STATISTICS['Sum of weights'] = Sum(Weight,'obsIter')
