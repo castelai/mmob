@@ -80,7 +80,7 @@ av = {1: one, 2: one, 0: one}
 
 # EXCLUDE
 
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1)
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (Income == -1) + (BirthYear == -1)
 
 # MNL (Multinomial Logit model), with availability conditions
 logprob = bioLogLogit(V,av,Choice)
