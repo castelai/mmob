@@ -54,9 +54,9 @@ NbChildren = DefineVariable('NbChildren', NbChild * (NbChild > 0) )
 # Added variables to the model
 
 Age = DefineVariable('Age', 2010 - BirthYear)
-AgeYoung = DefineVariable('AgeYoung', (Age > 18) * 18 + Age * (Age <= 18))
-AgeAdult = DefineVariable('AgeAdult', (Age > 65) * (65 - 18) + (Age - 18) * (18 < Age <= 65))
-AgeOld = DefineVariable('AgeOld', (Age > 65) * (Age - 65))
+AgeYoung = DefineVariable('AgeYoung', (Age > 35) * 35 + Age * (Age <= 35))
+AgeAdult = DefineVariable('AgeAdult', (Age > 57) * (60 - 35) + (Age - 35) * (35 < Age <= 57))
+AgeOld = DefineVariable('AgeOld', (Age > 57) * (Age - 57))
 
 
 
@@ -74,7 +74,7 @@ av = {1: one, 2: one, 0: one}
 
 # EXCLUDE
 
-BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) # I exclude the respondents whose age we can not calculate 
+BIOGEME_OBJECT.EXCLUDE = (Choice == -1) + (BirthYear == -1) + (Income == -1) # I exclude the respondents whose age we can not calculate 
 
 # MNL (Multinomial Logit model), with availability conditions
 logprob = bioLogLogit(V,av,Choice)
